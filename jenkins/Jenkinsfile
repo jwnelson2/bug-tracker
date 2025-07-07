@@ -105,6 +105,16 @@
                         sh 'npx playwright test'
                     }
                 }
+                post {
+                    always {
+                        junit 'test-api/test-results/results.xml'
+                        publishHTML target: [
+                            reportDir: 'tests-api/playwrights-report',
+                            reportFiles: 'index.html',
+                            reportName: 'Playwright API Test Report'
+                        ]
+                    }
+                }
             }
         }
         post {
